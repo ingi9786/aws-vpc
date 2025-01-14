@@ -1,14 +1,14 @@
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.runners_dev.id
+  vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "runners-dev-igw"
+    Name = "runners-${var.environment}-igw"
   }
 }
 
 resource "aws_route_table" "public_rt" {
-  vpc_id = aws_vpc.runners_dev.id
+  vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "public-rt-runners-dev"
+    Name = "public-rt-runners-${var.environment}"
   }
 }
 
@@ -19,7 +19,7 @@ resource "aws_route" "public_route" {
 }
 
 resource "aws_route_table_association" "public_associations" {
-  for_each        = aws_subnet.public
-  subnet_id       = each.value.id
-  route_table_id  = aws_route_table.public_rt.id
+  for_each       = toset(var.azs)
+  subnet_id      = aws_subnet.public[each.key].id
+  route_table_id = aws_route_table.public_rt.id
 }
