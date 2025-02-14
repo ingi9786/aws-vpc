@@ -18,5 +18,5 @@ module "vpc" {
   environment = "production"
   vpc_cidr = "10.0.0.0/16"
   nat_gateway_azs = ["ap-northeast-2a",]
-  
+  name_prefix = ""
 }

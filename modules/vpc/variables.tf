@@ -3,6 +3,11 @@ variable "environment" {
   type        = string
 }
 
+variable "name_prefix" {
+  description = "Prefix for Name"
+  type        = string
+}
+
 variable "vpc_cidr" {
   description = "CIDR block for the VPC"
   type        = string

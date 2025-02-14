@@ -5,6 +5,6 @@ resource "aws_vpc_endpoint" "s3" {
   vpc_endpoint_type  = "Gateway"
 
   tags = {
-    Name = "runners-${var.environment}-s3-endpoint"
+    Name = "${var.name_prefix}-${var.environment}-s3-endpoint"
   }
 }

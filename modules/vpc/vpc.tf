@@ -4,7 +4,7 @@ resource "aws_vpc" "vpc" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
-    Name = "runners-${var.environment}"
+    Name = "${var.name_prefix}-${var.environment}"
     Environment = var.environment
   }
 }

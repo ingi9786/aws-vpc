@@ -5,7 +5,7 @@ resource "aws_subnet" "public" {
   availability_zone     = each.key
   map_public_ip_on_launch = true
   tags = {
-    Name = "runners-${var.environment}-${each.key}-public"
+    Name = "${var.name_prefix}-${var.environment}-${each.key}-public"
   }
 }
 
@@ -15,6 +15,6 @@ resource "aws_subnet" "private" {
   cidr_block            = var.subnet_cidrs.private[index(var.azs, each.key)]
   availability_zone     = each.key
   tags = {
-    Name = "runners-${var.environment}-${each.key}-private"
+    Name = "${var.name_prefix}-${var.environment}-${each.key}-private"
   }
 }

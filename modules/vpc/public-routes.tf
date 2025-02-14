@@ -1,14 +1,14 @@
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "runners-${var.environment}-igw"
+    Name = "${var.name_prefix}-${var.environment}-igw"
   }
 }
 
 resource "aws_route_table" "public_rt" {
   vpc_id = aws_vpc.vpc.id
   tags = {
-    Name = "public-rt-runners-${var.environment}"
+    Name = "public-rt-${var.name_prefix}-${var.environment}"
   }
 }
 
